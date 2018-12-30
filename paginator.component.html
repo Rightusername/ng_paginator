@@ -1,0 +1,26 @@
+<div class="wrap">
+    <ul class="pages">
+        <li [ngClass]="{disabled:pager.currentPage === 1}" (click)="changePageBtn(1)" class="link center" *ngIf="pages > 7 && curpage > 4">
+            <a appLink (click)="pagerLink($event)" [href]="makeQueryLink(1)">
+                1
+            </a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}" class="link center" *ngIf="pages > 7 && curpage > 5">
+            <a appLink (click)="changePageBtn(pager.currentPage - 1)">...</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{'active':curpage === page}" class="link center" (click)="changePageBtn(page)">
+            <a appLink (click)="pagerLink($event)" [href]="makeQueryLink(page)">
+                {{page}}
+            </a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="link center" *ngIf="pages > 10 && curpage < pages - 4">
+            <a appLink (click)="changePageBtn(pager.currentPage + 1)">...</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="changePageBtn(pages)" class="link center"
+            *ngIf="pages > 10 && curpage < pages - 3">
+            <a appLink (click)="pagerLink($event)" [href]="makeQueryLink(pages)">
+                {{pages}}
+            </a>
+        </li>
+    </ul>
+</div>
